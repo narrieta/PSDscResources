@@ -4,7 +4,7 @@
 version: 2.4.{build}.0
 os: Visual Studio 2015
 install:
-    - git clone https://github.com/PowerShell/DscResource.Tests
+    - git clone https://github.com/narrieta/DscResource.Tests -b dev
     - ps: Import-Module -Name .\Tests\TestHelpers\WMF5Dot1Installation.psm1 -Force
     - ps: Install-Wmf5Dot1
     - ps: Start-Sleep 5
@@ -16,8 +16,10 @@ install:
             throw 'WMF 5.1 install failed'
         }
     - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
+    - ps: Import-Module -Name .\Tests\TestHelpers\PSCoreInstallation.psm1
     - ps: Invoke-AppveyorInstallTask
-
+    - ps: Install-PowerShellCore
+ 
 #---------------------------------#
 #      build configuration        #
 #---------------------------------#
@@ -30,7 +32,9 @@ build: false
 
 test_script:
     - ps: |
+        $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
         Invoke-AppveyorTestScriptTask -CodeCoverage -CodeCovIo
+        $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 #---------------------------------#
 #      deployment configuration   #
