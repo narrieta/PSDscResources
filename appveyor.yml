@@ -4,7 +4,7 @@
 version: 2.4.{build}.0
 os: Visual Studio 2015
 install:
-    - git clone https://github.com/narrieta/DscResource.Tests -b dev
+    - git clone https://github.com/narrieta/DscResource.Tests -b narrieta-pscore
     - ps: Import-Module -Name .\Tests\TestHelpers\WMF5Dot1Installation.psm1 -Force
     - ps: Install-Wmf5Dot1
     - ps: Start-Sleep 5
