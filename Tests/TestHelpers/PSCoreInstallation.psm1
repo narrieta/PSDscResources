@@ -71,16 +71,12 @@ function Install-PowerShellCore
     param ()
 
     #
-    # One of the prerequisites for installing PS Core is the VS2015 C++ redistributable at https://download.my.visualstudio.com/pr/mu_visual_cpp_2015_redistributable_update_3_x64_9052538.exe.
-    # This URI requires signing in first, though, so I made a copy to https://narrieta.blob.core.windows.net/dsc/mu_visual_cpp_2015_redistributable_update_3_x64_9052538.exe?sv=2014-02-14&ss=2017-07-06T19%3A39%3A34Z&se=2017-12-31T20%3A39%3A04Z&sp=r&sr=b&sig=MNqxvw%2F9%2FbgMUfKd8RYNK0AKsx0WSKClf%2BcwhX5EGrM%3D
-    # The standard Appveyor image already includes this component, so I am skipping it for the moment.
-    #
-    # As far as PS Core itself, there are different installers for different Windows versions:
-    #   * https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.3/PowerShell-6.0.0-beta.3-win10-win2016-x64.msi
-    #   * https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.3/PowerShell-6.0.0-beta.3-win81-win2012r2-x64.msi
+    # PS Core installers:
+    #   * https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.4/PowerShell-6.0.0-beta.4-win10-win2016-x64.msi
+    #   * https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.4/PowerShell-6.0.0-beta.4-win81-win2012r2-x64.zip
     # The standard Appveyor image is a Windows Server 2012 R2, which is installed below
     #
-    Install-Download 'https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.3/PowerShell-6.0.0-beta.3-win81-win2012r2-x64.msi'
+    Install-Download 'https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-beta.4/PowerShell-6.0.0-beta.4-win81-win2012r2-x64.zip'
 }
 
 Export-ModuleMember -Function Install-PowerShellCore
